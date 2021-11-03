@@ -1,6 +1,9 @@
 package com.zy.kotlin_demo
 
-class Person {
+/**
+ * 默认的类是无法继承的 前面加了open就可以
+ */
+open class Person {
 
     var name = ""
     var age = 0
