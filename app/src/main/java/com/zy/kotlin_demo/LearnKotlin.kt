@@ -6,6 +6,23 @@ import kotlin.math.max
  * 第二章 一些基础语法 变量创建 if when for
  */
 fun main() {
+
+    /**
+     * 创建数据类
+     */
+    val c1 = Cellphone("nmsl",99.1)
+    val c2 = Cellphone("nmsl",99.1)
+
+    println(c1)
+//    println(c2)
+
+    println("是否相等： " + (c1 == c2))//这个地方书上打印出来时true  我这边是false 原因是数据给的不一样 如果一样就是true
+    /**
+     * 单例的使用
+     */
+    Singleton.singletonTest()
+
+
     /**
      * 创建对象少了一个 new关键字
      */
@@ -17,9 +34,25 @@ fun main() {
     /**
      * 创建student 主构造函数得用法
      */
-    val s = Student("a123",5,"???",19)
+//    val s = Student("a123",5,"???",19)
 
-
+    /**
+     * 实现了次构造函数时候的创建方式
+     * 可以有三种创建方式
+     */
+//    val s1 = Student()
+//    val s2 = Student("NMSL",19)
+//    val s3 = Student("??",5,"nmsl",19)
+    /**
+     * 只有次构造函数的时候 且没有主构造函数
+     */
+//    val s = Student("NMSL",19)
+    /**
+     * 实现接口
+     */
+//    val student = Student("NMSL",18)
+//
+//    doStudy(student)
 
 //    val a = 10//val 为不可变变量
 //    println("a = " + a)
@@ -68,6 +101,11 @@ fun main() {
 //    for (i in 0..10){
 //        println(i)
 //    }
+}
+
+fun doStudy(student: Student) {
+    student.readBooks()
+    student.doHomeWork()
 }
 
 
