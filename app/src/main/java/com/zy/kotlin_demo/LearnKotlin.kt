@@ -9,10 +9,16 @@ fun main() {
     /**
      * 创建对象少了一个 new关键字
      */
-    val p = Person()
-    p.name = "nmsl"
-    p.age = 20
-    p.eat()
+//    val p = Person("NMSL",18)
+//    p.name = "nmsl"
+//    p.age = 20
+//    p.eat()
+
+    /**
+     * 创建student 主构造函数得用法
+     */
+    val s = Student("a123",5,"???",19)
+
 
 
 //    val a = 10//val 为不可变变量
