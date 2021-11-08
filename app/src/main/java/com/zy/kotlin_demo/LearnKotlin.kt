@@ -7,20 +7,80 @@ import kotlin.math.max
  */
 fun main() {
 
+
+    /**
+     * 创建一个list
+     */
+    /**
+     * listof创建的是一个不可变的集合  只有读取 无法添加修改删除
+     */
+//    val list = listOf<String>("苹果","香蕉","橘子","梨","grape？妈的我不认识")
+
+    /**
+     * mutableListOf创建的list是动态可操作的
+     */
+//    val list = mutableListOf<String>("苹果","香蕉","橘子","梨","grape？妈的我不认识")
+//    list.add("西瓜")
+
+    /**
+     * 遍历一个list
+     */
+//    for (fruit in list){
+//        println(fruit)
+//    }
+
+    /**
+     * 创建一个set
+     */
+//    val set = setOf("苹果","香蕉","橘子","梨","grape？妈的我不认识")
+//    val set = mutableSetOf("苹果","香蕉","橘子","梨","grape？妈的我不认识")
+//    set.add("西瓜")
+//    for (fruit in set){
+//        println(fruit)
+//    }
+
+    /**
+     * map
+     */
+//    val map = HashMap<String,Int>()
+    /**
+     * kotlin也可以put get的方式获取
+     * 但是更推荐用下标赋值
+     */
+//    map["苹果"] = 1
+//    map["香蕉"] = 2
+//    map["橘子"] = 3
+//    map["梨"] = 4
+//    map["grape？妈的我不认识"] = 5
+//    val num = map["苹果"]
+    /**
+     * 也可以跟上面一样用mapof   mutableMapOf来创建
+     * to 不是一个关键字 是一个infix函数 这个后面会讲
+     */
+//    val map = mutableMapOf<String,Int>("苹果" to 1,"香蕉" to 2,"橘子" to 3,"梨" to 4,"grape？妈的我不认识" to 5)
+    /**
+     * 遍历就是跟前面list set一样 把单个要遍历的对象换成了两个 用括号括起来
+     */
+//    for ((fruit,num) in map){
+//        println(fruit + "====" + num)
+//    }
+
+
+
     /**
      * 创建数据类
      */
-    val c1 = Cellphone("nmsl",99.1)
-    val c2 = Cellphone("nmsl",99.1)
+//    val c1 = Cellphone("nmsl",99.1)
+//    val c2 = Cellphone("nmsl",99.1)
 
-    println(c1)
+//    println(c1)
 //    println(c2)
 
-    println("是否相等： " + (c1 == c2))//这个地方书上打印出来时true  我这边是false 原因是数据给的不一样 如果一样就是true
+//    println("是否相等： " + (c1 == c2))//这个地方书上打印出来时true  我这边是false 原因是数据给的不一样 如果一样就是true
     /**
      * 单例的使用
      */
-    Singleton.singletonTest()
+//    Singleton.singletonTest()
 
 
     /**
