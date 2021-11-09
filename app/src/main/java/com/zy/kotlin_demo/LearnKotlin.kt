@@ -7,6 +7,62 @@ import kotlin.math.max
  */
 fun main() {
 
+    /**
+     * 2.6.2 lambda表达式
+     *
+     * lambda 就是一小段可以作为参数传递的代码
+     * 语法结构就是{参数名1：参数类型，参数名2：参数类型 -> 函数体}
+     * 这个地方用书上原来的方法maxBy会报错  换maxByOrNull可以
+     */
+    val list = listOf("Apple","Banana","Orange","Pear","Grape","Watermelon")
+
+    /**
+     * 这是比较全的写法
+     */
+//    val lambda = {fruit:String -> fruit.length}
+//    val maxLengthFruit = list.maxByOrNull(lambda)
+
+    /**
+     * 简化1.0
+     * 省略掉lambda的对象
+     */
+//    val maxLengthFruit = list.maxByOrNull({fruit:String -> fruit.length})
+    /**
+     * 简化2.0
+     * 如果lambda参数是最后一个参数 可以放到括号外面
+     * 我理解就是定义的fruit是一个参数  也是最后一个参数 所以可以放外面
+     */
+//    val maxLengthFruit = list.maxByOrNull(){fruit:String -> fruit.length}
+    /**
+     * 简化3.0
+     * 如果lambda参数是函数唯一一个参数 还可以省略掉（）
+     * 这个我猜是不是说里面只有一段lambda代码 如果有两段就不能这么写？
+     */
+//    val maxLengthFruit = list.maxByOrNull { fruit:String -> fruit.length }
+    /**
+     * 简化4.0
+     * kotlin有类型推导机制 lambda里参数大多情况不必声明参数类型
+     */
+//    val maxLengthFruit = list.maxByOrNull { fruit -> fruit.length }
+    /**
+     * 简化5.0
+     * 如果只有一个参数 也不用参数名 直接使用it关键字代替
+     */
+    val maxLengthFruit = list.maxByOrNull { it.length }
+    println(maxLengthFruit)
+
+    /**
+     * map函数是把每个元素都映射成另外一个值，映射的规则在lambda表达式中指定 最后生成一个新的集合
+     */
+    val newList = list.map { it.toUpperCase() }
+    for (fruit in newList){
+        println(fruit)
+    }
+
+
+
+
+
 
     /**
      * 创建一个list
