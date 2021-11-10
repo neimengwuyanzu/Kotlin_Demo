@@ -7,63 +7,143 @@ import kotlin.math.max
  */
 fun main() {
 
-    /**
-     * 2.6.2 lambda表达式
-     *
-     * lambda 就是一小段可以作为参数传递的代码
-     * 语法结构就是{参数名1：参数类型，参数名2：参数类型 -> 函数体}
-     * 这个地方用书上原来的方法maxBy会报错  换maxByOrNull可以
-     */
-    val list = listOf("Apple","Banana","Orange","Pear","Grape","Watermelon")
+    useJavaAPI()
 
-    /**
-     * 这是比较全的写法
-     */
-//    val lambda = {fruit:String -> fruit.length}
-//    val maxLengthFruit = list.maxByOrNull(lambda)
+//    LambdaDemo()
+
+
+//    ListDemo()
+
 
     /**
-     * 简化1.0
-     * 省略掉lambda的对象
+     * 创建数据类
      */
-//    val maxLengthFruit = list.maxByOrNull({fruit:String -> fruit.length})
+//    val c1 = Cellphone("nmsl",99.1)
+//    val c2 = Cellphone("nmsl",99.1)
+
+//    println(c1)
+//    println(c2)
+
+//    println("是否相等： " + (c1 == c2))//这个地方书上打印出来时true  我这边是false 原因是数据给的不一样 如果一样就是true
     /**
-     * 简化2.0
-     * 如果lambda参数是最后一个参数 可以放到括号外面
-     * 我理解就是定义的fruit是一个参数  也是最后一个参数 所以可以放外面
+     * 单例的使用
      */
-//    val maxLengthFruit = list.maxByOrNull(){fruit:String -> fruit.length}
-    /**
-     * 简化3.0
-     * 如果lambda参数是函数唯一一个参数 还可以省略掉（）
-     * 这个我猜是不是说里面只有一段lambda代码 如果有两段就不能这么写？
-     */
-//    val maxLengthFruit = list.maxByOrNull { fruit:String -> fruit.length }
-    /**
-     * 简化4.0
-     * kotlin有类型推导机制 lambda里参数大多情况不必声明参数类型
-     */
-//    val maxLengthFruit = list.maxByOrNull { fruit -> fruit.length }
-    /**
-     * 简化5.0
-     * 如果只有一个参数 也不用参数名 直接使用it关键字代替
-     */
-    val maxLengthFruit = list.maxByOrNull { it.length }
-    println(maxLengthFruit)
+//    Singleton.singletonTest()
+
 
     /**
-     * map函数是把每个元素都映射成另外一个值，映射的规则在lambda表达式中指定 最后生成一个新的集合
+     * 创建对象少了一个 new关键字
      */
-    val newList = list.map { it.toUpperCase() }
-    for (fruit in newList){
-        println(fruit)
-    }
+//    val p = Person("NMSL",18)
+//    p.name = "nmsl"
+//    p.age = 20
+//    p.eat()
+
+    /**
+     * 创建student 主构造函数得用法
+     */
+//    val s = Student("a123",5,"???",19)
+
+    /**
+     * 实现了次构造函数时候的创建方式
+     * 可以有三种创建方式
+     */
+//    val s1 = Student()
+//    val s2 = Student("NMSL",19)
+//    val s3 = Student("??",5,"nmsl",19)
+    /**
+     * 只有次构造函数的时候 且没有主构造函数
+     */
+//    val s = Student("NMSL",19)
+    /**
+     * 实现接口
+     */
+    val student = Student("NMSL", 18)
+//
+    doStudy(student)
+
+//    val a = 10//val 为不可变变量
+//    println("a = " + a)
+
+//    var a: Int = 10//var 为可变变量
+//    a = a * 10
+//    println("a = " + a)
+
+//    val a = 37
+//    val b = 40
+//    val value = largerNumber(a,b)
+//    println("larger number is " + value)
+
+//    val score = getScore("nmsl")
+//    println("score == " + score)
+//
+//    checkNumber(10L)
+
+    /**
+     * downto 就是降序 也是闭合区间 展现出来就是10-1
+     * 但是我把downto 改成了 until 没有报错 也没有打印出来10-1
+     */
+//    for (i in 10 downTo 1){
+//        println(i)
+//    }
 
 
+    /**
+     * step 这个关键词就相当于java循环里的i++ 变成了i+2 每次增加2
+     */
+//    for (i in 0 until 10 step 2){
+//        println(i)
+//    }
 
 
+    /**
+     * 加了until 就是单端闭合区间 这种写法展示的就是0-9
+     */
+//    for (i in 0 until 10){
+//        println(i)
+//    }
 
+    /**
+     * 这里有个区间的概念 0..10  包含的就是1-10 书里说这就是两端闭合区间
+     */
+//    for (i in 0..10){
+//        println(i)
+//    }
+}
 
+/**
+ * 2.6.3 java函数式API的使用
+ */
+private fun useJavaAPI() {
+    Thread(object : Runnable {
+        override fun run() {
+            println("线程启动")
+        }
+    }).start()
+
+    /**
+     * 简化1.0 runnable如果只有一个待实现的方法 就可以省略run方法
+     */
+    Thread(Runnable {
+        println("简化1.0线程启动")
+    }).start()
+
+    /**
+     * 简化2.0 只有一个方法接口参数 省略接口名
+     */
+    Thread({
+        println("简化2.0线程启动")
+    }).start()
+
+    /**
+     * 简化3.0 跟lambda表达式一样 如果是方法唯一参数 可以省略括号
+     */
+    Thread {
+        println("简化3.0线程启动")
+    }.start()
+}
+
+private fun ListDemo() {
     /**
      * 创建一个list
      */
@@ -120,112 +200,113 @@ fun main() {
 //    for ((fruit,num) in map){
 //        println(fruit + "====" + num)
 //    }
-
-
-
-    /**
-     * 创建数据类
-     */
-//    val c1 = Cellphone("nmsl",99.1)
-//    val c2 = Cellphone("nmsl",99.1)
-
-//    println(c1)
-//    println(c2)
-
-//    println("是否相等： " + (c1 == c2))//这个地方书上打印出来时true  我这边是false 原因是数据给的不一样 如果一样就是true
-    /**
-     * 单例的使用
-     */
-//    Singleton.singletonTest()
-
-
-    /**
-     * 创建对象少了一个 new关键字
-     */
-//    val p = Person("NMSL",18)
-//    p.name = "nmsl"
-//    p.age = 20
-//    p.eat()
-
-    /**
-     * 创建student 主构造函数得用法
-     */
-//    val s = Student("a123",5,"???",19)
-
-    /**
-     * 实现了次构造函数时候的创建方式
-     * 可以有三种创建方式
-     */
-//    val s1 = Student()
-//    val s2 = Student("NMSL",19)
-//    val s3 = Student("??",5,"nmsl",19)
-    /**
-     * 只有次构造函数的时候 且没有主构造函数
-     */
-//    val s = Student("NMSL",19)
-    /**
-     * 实现接口
-     */
-//    val student = Student("NMSL",18)
-//
-//    doStudy(student)
-
-//    val a = 10//val 为不可变变量
-//    println("a = " + a)
-
-//    var a: Int = 10//var 为可变变量
-//    a = a * 10
-//    println("a = " + a)
-
-//    val a = 37
-//    val b = 40
-//    val value = largerNumber(a,b)
-//    println("larger number is " + value)
-
-//    val score = getScore("nmsl")
-//    println("score == " + score)
-//
-//    checkNumber(10L)
-
-    /**
-     * downto 就是降序 也是闭合区间 展现出来就是10-1
-     * 但是我把downto 改成了 until 没有报错 也没有打印出来10-1
-     */
-//    for (i in 10 downTo 1){
-//        println(i)
-//    }
-
-
-    /**
-     * step 这个关键词就相当于java循环里的i++ 变成了i+2 每次增加2
-     */
-//    for (i in 0 until 10 step 2){
-//        println(i)
-//    }
-
-
-    /**
-     * 加了until 就是单端闭合区间 这种写法展示的就是0-9
-     */
-//    for (i in 0 until 10){
-//        println(i)
-//    }
-
-    /**
-     * 这里有个区间的概念 0..10  包含的就是1-10 书里说这就是两端闭合区间
-     */
-//    for (i in 0..10){
-//        println(i)
-//    }
 }
 
-fun doStudy(student: Student) {
-    student.readBooks()
-    student.doHomeWork()
+private fun LambdaDemo() {
+    /**
+     * 2.6.2 lambda表达式
+     *
+     * lambda 就是一小段可以作为参数传递的代码
+     * 语法结构就是{参数名1：参数类型，参数名2：参数类型 -> 函数体}
+     * 这个地方用书上原来的方法maxBy会报错  换maxByOrNull可以
+     */
+    val list = listOf("Apple", "Banana", "Orange", "Pear", "Grape", "Watermelon")
+
+    /**
+     * 这是比较全的写法
+     */
+//    val lambda = {fruit:String -> fruit.length}
+//    val maxLengthFruit = list.maxByOrNull(lambda)
+
+    /**
+     * 简化1.0
+     * 省略掉lambda的对象
+     */
+//    val maxLengthFruit = list.maxByOrNull({fruit:String -> fruit.length})
+    /**
+     * 简化2.0
+     * 如果lambda参数是最后一个参数 可以放到括号外面
+     * 我理解就是定义的fruit是一个参数  也是最后一个参数 所以可以放外面
+     */
+//    val maxLengthFruit = list.maxByOrNull(){fruit:String -> fruit.length}
+    /**
+     * 简化3.0
+     * 如果lambda参数是函数唯一一个参数 还可以省略掉（）
+     * 这个我猜是不是说里面只有一段lambda代码 如果有两段就不能这么写？
+     */
+//    val maxLengthFruit = list.maxByOrNull { fruit:String -> fruit.length }
+    /**
+     * 简化4.0
+     * kotlin有类型推导机制 lambda里参数大多情况不必声明参数类型
+     */
+//    val maxLengthFruit = list.maxByOrNull { fruit -> fruit.length }
+    /**
+     * 简化5.0
+     * 如果只有一个参数 也不用参数名 直接使用it关键字代替
+     */
+//    val maxLengthFruit = list.maxByOrNull { it.length }
+//    println(maxLengthFruit)
+
+    /**
+     * map函数是把每个元素都映射成另外一个值，映射的规则在lambda表达式中指定 最后生成一个新的集合
+     */
+//    val newList = list.map { it.toUpperCase() }
+//    for (fruit in newList) {
+//        println(fruit)
+//    }
+
+    /**
+     * filter过滤
+     *
+     * 结合map函数  过滤小于五个字母内的并且转换大写
+     */
+    val newList = list.filter { it.length <= 5 }
+        .map { it.toUpperCase() }
+
+    for (fruit in newList) {
+        println(fruit)
+    }
+
+    /**
+     * any函数 判断集合中是否至少存在一个元素满足指定条件
+     */
+    val anyResult = list.any { it.length <= 5 }
+
+    /**
+     * all函数 判断集合中是否所有元素都满足指定条件
+     */
+    val allResult = list.all { it.length <= 5 }
+    println("any? = " + anyResult)
+    println("all? = " + allResult)
+
+}
+
+/**
+ * kotlin自带判空处理
+ * 如果参数类型后面加一个“？”  就表示这个参数可以为空
+ */
+//fun doStudy(student: Student) {
+/**
+ * 2.7.1 传入参数判空处理
+ */
+fun doStudy(student: Student?) {
+    /**
+     * 常规判空处理
+     */
+//    if (student != null) {
+//        student.readBooks()
+//        student.doHomeWork()
+//    }
+
+    /**
+     * kotlin 判空辅助工具 2.7.2
+     */
+    student?.readBooks()
+    student?.doHomeWork()
 }
 
 
-fun getScore(name:String) = when{
+fun getScore(name: String) = when {
     name.startsWith("nm") -> 60
     name == "cnm" -> 30
     else -> 0
@@ -244,8 +325,8 @@ fun getScore(name:String) = when{
 /**
  * 判断数据类型  Number是kotlin自带的 源码挺简单的
  */
-fun checkNumber(num:Number){
-    when(num){
+fun checkNumber(num: Number) {
+    when (num) {
         is Int -> println("是他妈的整数")
         is Double -> println("是他妈的小数")
         else -> println("能不能传点阳间的数据")
@@ -269,7 +350,7 @@ fun checkNumber(num:Number){
 /**
  * 精简2.0
  */
-fun largerNumber(num1:Int,num2:Int) = if (num1>num2) num1 else num2
+fun largerNumber(num1: Int, num2: Int) = if (num1 > num2) num1 else num2
 
 /**
  * 精简1.0
@@ -324,7 +405,7 @@ fun largerNumber(num1:Int,num2:Int) = if (num1>num2) num1 else num2
 /**
  * 基础写法
  * 组成 方法名(参数名:参数类型):返回类型
-*/
+ */
 //fun largerNumber(num1: Int, num2: Int): Int {
 //    //kotlin自带方法max
 //    return max(num1,num2);
