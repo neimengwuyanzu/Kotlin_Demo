@@ -5,9 +5,19 @@ import kotlin.math.max
 /**
  * 第二章 一些基础语法 变量创建 if when for
  */
+
+var content:String = "hello"
 fun main() {
 
-    useJavaAPI()
+    if (content != null){
+        printUpperCase()
+    }
+
+
+    getTextLength("NMSL")
+
+
+//    useJavaAPI()
 
 //    LambdaDemo()
 
@@ -110,6 +120,20 @@ fun main() {
 //        println(i)
 //    }
 }
+
+/**
+ * 2.7.2
+ */
+fun printUpperCase() {
+    val upperCase = content.toUpperCase()
+    println(upperCase)
+}
+
+/**
+ * 2.7.2 判空辅助工具使用
+ * 使用？：操作符 左右各有表达式 如果左边表达式结果不为空就返回左边表达式  否则返回右边表达式结果
+ */
+fun getTextLength(text: String?)  = text?.length ?: 0
 
 /**
  * 2.6.3 java函数式API的使用
