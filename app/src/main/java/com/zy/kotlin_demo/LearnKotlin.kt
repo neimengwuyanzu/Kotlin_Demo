@@ -8,7 +8,6 @@ import kotlin.math.max
 
 var content:String = "hello"
 fun main() {
-
     if (content != null){
         printUpperCase()
     }
