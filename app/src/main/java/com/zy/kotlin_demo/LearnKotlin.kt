@@ -7,7 +7,7 @@ import kotlin.math.max
  */
 
 var content:String = "hello"
-val brand = "死妈三星"
+val brand = "三星"
 val price = 9999
 fun main() {
 
