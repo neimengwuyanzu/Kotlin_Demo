@@ -29,6 +29,9 @@ fun main() {
 //    if (content != null){
 //        printUpperCase()
 //    }
+    if (content != null){
+        printUpperCase()
+    }
 
 
 //    getTextLength("NMSL")
