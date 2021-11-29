@@ -1,5 +1,6 @@
 package com.zy.kotlin_demo
 
+import java.lang.StringBuilder
 import kotlin.math.max
 
 /**
@@ -10,6 +11,16 @@ var content:String = "hello"
 val brand = "三星"
 val price = 9999
 fun main() {
+
+    /**
+     * 3.7.1
+     * 标准函数with
+     */
+    useWithFUN()
+
+
+
+
 
     /**
      * 2.8.1
@@ -29,9 +40,9 @@ fun main() {
 //    if (content != null){
 //        printUpperCase()
 //    }
-    if (content != null){
-        printUpperCase()
-    }
+//    if (content != null){
+//        printUpperCase()
+//    }
 
 
 //    getTextLength("NMSL")
@@ -139,6 +150,40 @@ fun main() {
 //    for (i in 0..10){
 //        println(i)
 //    }
+}
+
+/**
+ * 3.7.1
+ * 标准函数with的使用
+ */
+fun useWithFUN() {
+    val list = listOf("苹果","香蕉","橘子","梨","不认识")
+    //挨个吃水果的常规写法
+//    val builder = StringBuilder()
+//    builder.append("开始吃水果  \n")
+//    for (fruit in list){
+//        builder.append(fruit).append(" 被吃掉了 \n")
+//    }
+//    builder.append("吃光了")
+//    val result = builder.toString()
+
+
+    //使用with来写
+    /**
+     * 写完发现用这个函数就是传入一个StringBuilder对象
+     * 然后在方法内可以直接调用对象方法
+     * 然后lambda最后一行作为返回值直接调用tostring方法
+     */
+
+    val result = with(StringBuilder()){
+        append("开始吃水果了")
+        for (fruit in list){
+            append(fruit).append("  被吃了 \n")
+        }
+        append("真尼玛能吃")
+        toString()
+    }
+    println(result)
 }
 
 fun printParams(num:Int,str:String = "hello"){
