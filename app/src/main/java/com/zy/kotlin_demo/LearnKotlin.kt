@@ -7,14 +7,31 @@ import kotlin.math.max
  */
 
 var content:String = "hello"
+val brand = "死妈三星"
+val price = 9999
 fun main() {
 
-    if (content != null){
-        printUpperCase()
-    }
+    /**
+     * 2.8.1
+     * 字符串内嵌表达式
+     *
+     */
+//    println("Cellphone(brand = $brand, price=$price )")
+
+    /**
+     * 2.8.2
+     * 函数默认参数
+     */
+//    printParams(100)
+    printParams(num = 100,str = "nmsl")
 
 
-    getTextLength("NMSL")
+//    if (content != null){
+//        printUpperCase()
+//    }
+
+
+//    getTextLength("NMSL")
 
 
 //    useJavaAPI()
@@ -68,9 +85,9 @@ fun main() {
     /**
      * 实现接口
      */
-    val student = Student("NMSL", 18)
+//    val student = Student("NMSL", 18)
 //
-    doStudy(student)
+//    doStudy(student)
 
 //    val a = 10//val 为不可变变量
 //    println("a = " + a)
@@ -121,11 +138,18 @@ fun main() {
 //    }
 }
 
+fun printParams(num:Int,str:String = "hello"){
+    println("num = $num , str = $str")
+}
+
 /**
  * 2.7.2
+ * 照书上说 这样是无法运行得 但是现在可以..
+ * 书上会提示 这样无法运行 但是加上“！！”就可以
  */
 fun printUpperCase() {
-    val upperCase = content.toUpperCase()
+    val upperCase = content!!.toUpperCase()
+//    val upperCase = content.toUpperCase()
     println(upperCase)
 }
 
@@ -325,8 +349,21 @@ fun doStudy(student: Student?) {
     /**
      * kotlin 判空辅助工具 2.7.2
      */
-    student?.readBooks()
-    student?.doHomeWork()
+//    student?.readBooks()
+//    student?.doHomeWork()
+    /**
+     * 2.7.2 用let函数
+     * ?操作表示student为空时候什么都不做 不会空时候调用let函数
+     * 并且根据lambda表达式优化 可以省略 stu
+     */
+    student?.let {
+//            stu ->
+//        stu.readBooks()
+//        stu.doHomeWork()
+        it.readBooks()
+        it.doHomeWork()
+    }
+
 }
 
 
