@@ -1,23 +1,39 @@
 package com.zy.kotlin_demo
 
-import java.lang.StringBuilder
 import kotlin.math.max
+import kotlin.text.StringBuilder
 
 /**
  * 第二章 一些基础语法 变量创建 if when for
  */
 
-var content:String = "hello"
+var content: String = "hello"
 val brand = "三星"
 val price = 9999
 fun main() {
 
+
+    /**
+     * 3.7.2 定义静态方法
+     */
+    val u = Util()
+    u.doAction()
+
+    Util.doAction2()
+
+
+    /**
+     * 调用顶层方法
+     */
+    doSomething()
+    nmsl()
+
     /**
      * 3.7.1
      * 标准函数with
-     */
-    useWithFUN()
 
+    useWithFUN()
+     */
 
 
 
@@ -26,81 +42,109 @@ fun main() {
      * 2.8.1
      * 字符串内嵌表达式
      *
+
+    println("Cellphone(brand = $brand, price=$price )")
      */
-//    println("Cellphone(brand = $brand, price=$price )")
 
     /**
      * 2.8.2
      * 函数默认参数
+
+    //    printParams(100)
+    printParams(num = 100, str = "nmsl")
      */
-//    printParams(100)
-    printParams(num = 100,str = "nmsl")
+
+    /**
+     *
+    //    if (content != null){
+    //        printUpperCase()
+    //    }
+    //    if (content != null){
+    //        printUpperCase()
+    //    }
+     */
+
+    /**
+     *
+    //    getTextLength("NMSL")
+     */
 
 
-//    if (content != null){
-//        printUpperCase()
-//    }
-//    if (content != null){
-//        printUpperCase()
-//    }
+    /**
+     *
 
+    //    useJavaAPI()
+     */
 
-//    getTextLength("NMSL")
+    /**
+     *
 
+    //    LambdaDemo()
+     */
 
-//    useJavaAPI()
+    /**
+     *
 
-//    LambdaDemo()
-
-
-//    ListDemo()
+    //    ListDemo()
+     */
 
 
     /**
      * 创建数据类
+
+    //    val c1 = Cellphone("nmsl",99.1)
+    //    val c2 = Cellphone("nmsl",99.1)
+
+    //    println(c1)
+    //    println(c2)
+
+    //    println("是否相等： " + (c1 == c2))//这个地方书上打印出来时true  我这边是false 原因是数据给的不一样 如果一样就是true
      */
-//    val c1 = Cellphone("nmsl",99.1)
-//    val c2 = Cellphone("nmsl",99.1)
 
-//    println(c1)
-//    println(c2)
-
-//    println("是否相等： " + (c1 == c2))//这个地方书上打印出来时true  我这边是false 原因是数据给的不一样 如果一样就是true
     /**
      * 单例的使用
+
+    //    Singleton.singletonTest()
      */
-//    Singleton.singletonTest()
 
 
     /**
      * 创建对象少了一个 new关键字
+
+    //    val p = Person("NMSL",18)
+    //    p.name = "nmsl"
+    //    p.age = 20
+    //    p.eat()
      */
-//    val p = Person("NMSL",18)
-//    p.name = "nmsl"
-//    p.age = 20
-//    p.eat()
 
     /**
      * 创建student 主构造函数得用法
+
+    //    val s = Student("a123",5,"???",19)
      */
-//    val s = Student("a123",5,"???",19)
 
     /**
      * 实现了次构造函数时候的创建方式
      * 可以有三种创建方式
+
+    //    val s1 = Student()
+    //    val s2 = Student("NMSL",19)
+    //    val s3 = Student("??",5,"nmsl",19)
      */
-//    val s1 = Student()
-//    val s2 = Student("NMSL",19)
-//    val s3 = Student("??",5,"nmsl",19)
     /**
      * 只有次构造函数的时候 且没有主构造函数
+
+    //    val s = Student("NMSL",19)
      */
-//    val s = Student("NMSL",19)
     /**
      * 实现接口
+
+    //    val student = Student("NMSL", 18)
      */
-//    val student = Student("NMSL", 18)
-//
+
+
+    /**
+     *
 //    doStudy(student)
 
 //    val a = 10//val 为不可变变量
@@ -119,37 +163,42 @@ fun main() {
 //    println("score == " + score)
 //
 //    checkNumber(10L)
+     */
 
     /**
      * downto 就是降序 也是闭合区间 展现出来就是10-1
      * 但是我把downto 改成了 until 没有报错 也没有打印出来10-1
+
+    //    for (i in 10 downTo 1){
+    //        println(i)
+    //    }
      */
-//    for (i in 10 downTo 1){
-//        println(i)
-//    }
 
 
     /**
      * step 这个关键词就相当于java循环里的i++ 变成了i+2 每次增加2
-     */
+
 //    for (i in 0 until 10 step 2){
 //        println(i)
 //    }
+     */
 
 
     /**
      * 加了until 就是单端闭合区间 这种写法展示的就是0-9
-     */
+
 //    for (i in 0 until 10){
 //        println(i)
 //    }
+     */
 
     /**
      * 这里有个区间的概念 0..10  包含的就是1-10 书里说这就是两端闭合区间
-     */
+
 //    for (i in 0..10){
 //        println(i)
 //    }
+     */
 }
 
 /**
@@ -157,7 +206,7 @@ fun main() {
  * 标准函数with的使用
  */
 fun useWithFUN() {
-    val list = listOf("苹果","香蕉","橘子","梨","不认识")
+    val list = listOf("苹果", "香蕉", "橘子", "梨", "不认识")
     //挨个吃水果的常规写法
 //    val builder = StringBuilder()
 //    builder.append("开始吃水果  \n")
@@ -173,20 +222,47 @@ fun useWithFUN() {
      * 写完发现用这个函数就是传入一个StringBuilder对象
      * 然后在方法内可以直接调用对象方法
      * 然后lambda最后一行作为返回值直接调用tostring方法
-     */
 
     val result = with(StringBuilder()){
-        append("开始吃水果了")
-        for (fruit in list){
-            append(fruit).append("  被吃了 \n")
+    append("开始吃水果了")
+    for (fruit in list){
+    append(fruit).append("  被吃了 \n")
+    }
+    append("真尼玛能吃")
+    toString()
+    }
+     */
+
+    //使用run来写
+    /**
+     * run 和with的区别就是 run是直接调用的对象的run方法  而with是把对象传进去 调用对象的方法
+
+    val result = StringBuilder().run {
+    append("开吃开吃 \n")
+    for (fruit in list){
+    append(fruit).append("被吃了 \n")
+    }
+    append("真尼玛能吃")
+    toString()
+    }
+     */
+
+    //使用apply 来写
+    /**
+     * apply区别于run 没有返回值
+     */
+    val result = StringBuilder().apply {
+        append("开吃开吃 \n")
+        for (fruit in list) {
+            append(fruit).append("被吃了 \n")
         }
         append("真尼玛能吃")
-        toString()
     }
-    println(result)
+
+    println(result.toString())
 }
 
-fun printParams(num:Int,str:String = "hello"){
+fun printParams(num: Int, str: String = "hello") {
     println("num = $num , str = $str")
 }
 
@@ -205,7 +281,7 @@ fun printUpperCase() {
  * 2.7.2 判空辅助工具使用
  * 使用？：操作符 左右各有表达式 如果左边表达式结果不为空就返回左边表达式  否则返回右边表达式结果
  */
-fun getTextLength(text: String?)  = text?.length ?: 0
+fun getTextLength(text: String?) = text?.length ?: 0
 
 /**
  * 2.6.3 java函数式API的使用
