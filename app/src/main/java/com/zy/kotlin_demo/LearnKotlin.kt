@@ -14,19 +14,39 @@ fun main() {
 
 
     /**
-     * 3.7.2 定义静态方法
+     * 5.6.2 运算符重载
      */
+    val money1 = Money(5)
+    val money2 = Money(10)
+    val money3 = money1+money2
+    val money4 = money3 + 20
+    println(money4.value)
+
+
+    /**
+     * 5.6.1扩展函数
+
+    val count = "ABC123xzy!@#!".lettersCount()
+    println(count)
+     */
+
+
+    /**
+     * 3.7.2 定义静态方法
+
     val u = Util()
     u.doAction()
 
     Util.doAction2()
+     */
 
 
     /**
      * 调用顶层方法
-     */
+
     doSomething()
     nmsl()
+     */
 
     /**
      * 3.7.1
