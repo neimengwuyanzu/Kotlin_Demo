@@ -12,3 +12,4 @@ dependencyResolutionManagement {
 rootProject.name = "Kotlin_Demo"
 include ':app'
 include ':fragmentbestpratice'
+include ':broadcasttest'
