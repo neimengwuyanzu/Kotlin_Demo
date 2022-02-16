@@ -20,14 +20,23 @@
         </activity>
 
         <receiver
-            android:name=".MyBroadcastReceiver"
+            android:name=".AnotherBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.example.broadcasttest.MY_BROADCAST"/>
+                <action android:name="com.example.broadcasttest.MY_BROADCAST" />
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".MyBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <!--设置有序广播接收的优先级-->
+            <intent-filter android:priority="100">
+                <action android:name="com.example.broadcasttest.MY_BROADCAST" />
+            </intent-filter>
+        </receiver>
         <receiver
             android:name=".BootCompletReceiver"
             android:enabled="true"

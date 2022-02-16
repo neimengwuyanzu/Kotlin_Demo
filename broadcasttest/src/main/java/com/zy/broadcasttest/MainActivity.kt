@@ -20,7 +20,9 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent("com.example.broadcasttext.MY_BROADCAST")
             intent.setPackage(packageName)
             intent.putExtra("nmsl","?????")
-            sendBroadcast(intent)
+//            sendBroadcast(intent)
+            //发送有序广播
+            sendOrderedBroadcast(intent,null)
         }
         val intentFilter = IntentFilter()
         intentFilter.addAction("android.intent.action.TIME_TICK")
