@@ -9,13 +9,17 @@ import android.os.Bundle
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     lateinit var timeChangeReceiver: TimeChangeReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        forceOffline.setOnClickListener{
+            val intent = Intent("com.example.broadcasttext.FORCE_OFFLINE")
+            sendBroadcast(intent)
+        }
         button.setOnClickListener{
             val intent = Intent("com.example.broadcasttext.MY_BROADCAST")
             intent.setPackage(packageName)
