@@ -12,15 +12,55 @@ val brand = "三星"
 val price = 9999
 fun main() {
 
+    println("main方法开始")
+    val str = ""
+    printString(str) { s ->
+        println("lambda 开始")
+//        if (s.isEmpty()) return@printString//局部返回的写法 会执行当前方法剩下的代码 不会执行lambda剩下的代码
+        if (s.isEmpty()) return //使用内联函数 可以直接停止执行
+        println(s)
+        println("lambda 结束")//if条件判断成功 所以这句不会执行
+    }
+    println("main方法结束")
+
+
+//    fun num1AndNum2(num1:Int,num2:Int,operation:(Int,Int) -> Int) :Int{
+//        val result = operation(num1,num2)
+//        return result
+//    }
+
+//    fun plus(num1: Int, num2: Int): Int {
+//        return num1 + num2
+//    }
+//
+//    fun minus(num1: Int, num2: Int): Int {
+//        return num1 - num2
+//    }
+//
+//    val num1 = 100
+//    val num2 = 80
+////    val result1 = num1AndNum2(num1,num2,:: plus)
+////    val result2 = num1AndNum2(num1,num2,::minus)
+//
+//    val result1 = num1AndNum2(num1, num2) { n1, n2 ->
+//        n1 + n2
+//    }
+//
+//    val result2 = num1AndNum2(num1, num2) { n1, n2 ->
+//        n1 - n2
+//    }
+//    println("result1 is $result1")
+//    println("result2 is $result2")
+
 
     /**
      * 5.6.2 运算符重载
      */
-    val money1 = Money(5)
-    val money2 = Money(10)
-    val money3 = money1+money2
-    val money4 = money3 + 20
-    println(money4.value)
+//    val money1 = Money(5)
+//    val money2 = Money(10)
+//    val money3 = money1+money2
+//    val money4 = money3 + 20
+//    println(money4.value)
 
 
     /**
@@ -54,8 +94,6 @@ fun main() {
 
     useWithFUN()
      */
-
-
 
 
     /**
@@ -165,24 +203,24 @@ fun main() {
 
     /**
      *
-//    doStudy(student)
+    //    doStudy(student)
 
-//    val a = 10//val 为不可变变量
-//    println("a = " + a)
+    //    val a = 10//val 为不可变变量
+    //    println("a = " + a)
 
-//    var a: Int = 10//var 为可变变量
-//    a = a * 10
-//    println("a = " + a)
+    //    var a: Int = 10//var 为可变变量
+    //    a = a * 10
+    //    println("a = " + a)
 
-//    val a = 37
-//    val b = 40
-//    val value = largerNumber(a,b)
-//    println("larger number is " + value)
+    //    val a = 37
+    //    val b = 40
+    //    val value = largerNumber(a,b)
+    //    println("larger number is " + value)
 
-//    val score = getScore("nmsl")
-//    println("score == " + score)
-//
-//    checkNumber(10L)
+    //    val score = getScore("nmsl")
+    //    println("score == " + score)
+    //
+    //    checkNumber(10L)
      */
 
     /**
@@ -198,27 +236,81 @@ fun main() {
     /**
      * step 这个关键词就相当于java循环里的i++ 变成了i+2 每次增加2
 
-//    for (i in 0 until 10 step 2){
-//        println(i)
-//    }
+    //    for (i in 0 until 10 step 2){
+    //        println(i)
+    //    }
      */
 
 
     /**
      * 加了until 就是单端闭合区间 这种写法展示的就是0-9
 
-//    for (i in 0 until 10){
-//        println(i)
-//    }
+    //    for (i in 0 until 10){
+    //        println(i)
+    //    }
      */
 
     /**
      * 这里有个区间的概念 0..10  包含的就是1-10 书里说这就是两端闭合区间
 
-//    for (i in 0..10){
-//        println(i)
-//    }
+    //    for (i in 0..10){
+    //        println(i)
+    //    }
      */
+}
+
+/**
+ * 内联函数 关键字inline
+ */
+inline fun num1AndNum2(num1: Int, num2: Int, operation: (Int, Int) -> Int): Int {
+    val result = operation(num1, num2)
+    return result
+}
+
+/**
+ * noinline
+ * 内联函数是为了减少对象创建减少消耗
+ * 非内联函数的作用是可以自由传递给其他函数 而内联函数只能传递给另一个内联函数
+ * 内联函数可以使用return返回
+ * 非内联函数只能进行局部返回
+ */
+/**
+ * inline fun inlineTest(block1: () -> Unit, noinline block2: () -> Unit) {
+
+}
+ */
+/**
+ * 测试内联与非内联区别
+ */
+/**
+ * fun printString(str:String,block:(String)->Unit){
+println("开始打印")
+block(str)
+println("打印结束")
+}
+ */
+inline fun printString(str: String, block: (String) -> Unit) {
+    println("开始打印")
+    block(str)
+    println("结束打印")
+}
+/**
+ * crossinline关键字 类似一个契约 保证在内联函数的lambda中一定不使用return关键字
+ */
+/**
+ * 这样可以运行 但是前面加了inline就无法运行 需要在里面方法加cressinline
+ * fun runRunnable(block:()->Unit){
+ *      val runnable = Runnable {
+ *          block()
+ *      }
+ *      runnable.run()
+ *}
+ */
+inline fun runRunnable(crossinline block:()->Unit){
+    val runnable = Runnable {
+        block()
+    }
+    runnable.run()
 }
 
 /**
