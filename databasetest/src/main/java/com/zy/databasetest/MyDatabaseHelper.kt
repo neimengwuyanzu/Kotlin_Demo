@@ -24,7 +24,6 @@ class MyDatabaseHelper(val context:Context,name:String,version:Int) : SQLiteOpen
         //创建数据库
         db.execSQL(createBook)
         db.execSQL(createCategory)
-        Toast.makeText(context,"创建成功",Toast.LENGTH_SHORT).show()
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
