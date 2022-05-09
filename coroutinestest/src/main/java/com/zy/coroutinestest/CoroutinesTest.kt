@@ -1,20 +1,48 @@
 import kotlinx.coroutines.*
 
 fun main(){
-//    GlobalScope.launch {
-//        println("协程他妈的跑起来了！")
-//        /**
-//         * 这个方法和sleep的区别就是
-//         * 这个方法是一个非阻塞式的挂起函数 只会挂起当前协程
-//         * 并不会影响其他协程的运行
-//         * 而Thread.sleep()方法会阻塞当前的线程，这样运行在该线程下的所有协程都会被阻塞。
-//         * 注意，delay()函数只能在协程的作用域或其他挂起函数中调用
-//         */
-//        delay(1500)//如果这个时间大于下面的  还是看不到结束的打印 因为这个协程还在挂起的时候  下面的sleep已经跑完了  直接结束了
-//        println("协程他妈的跑完了！")
+
+//    val job = GlobalScope.launch {
+//        //做一些事情
 //    }
-//    //不加这个看不到信息 因为程序跑太快
-//    Thread.sleep(1000)
+//    job.cancel()//取消协程的操作
+
+    /**
+     * coroutineScope函数和runBlocking函数还有点类似，
+     * 它可以保证其作用域内的所有代码和子协程在全部执行完之前，
+     * 外部的协程会一直被挂起。
+     */
+    /**
+     * coroutineScope函数只会阻塞当前协程，
+     * 既不影响其他协程，也不影响任何线程，
+     * 因此是不会造成任何性能上的问题的。
+     * 而runBlocking函数由于会挂起外部线程，
+     * 如果你恰好又在主线程中当中调用它的话，
+     * 那么就有可能会导致界面卡死的情况，
+     * 所以不太推荐在实际项目中使用。
+     */
+    runBlocking {
+        coroutineScope {
+            launch {
+                for (i in 1..10){
+                    println(i)
+                    delay(1000)
+                }
+            }
+        }
+        println("coroutineScope他妈的跑完了！")
+    }
+    println("协程跑完了！")
+    //    val start = System.currentTimeMillis()
+//    runBlocking {
+//        repeat(100000){
+////            launch {
+//                printNMSL()
+////            }
+//        }
+//    }
+//    val end = System.currentTimeMillis()
+//    println(end - start)
 
     /**
      * 需要注意的是，runBlocking函数通常只应该在测试环境下使用，
@@ -45,42 +73,25 @@ fun main(){
 //        }
 //    }
 
-//    val start = System.currentTimeMillis()
-//    runBlocking {
-//        repeat(100000){
-////            launch {
-//                printNMSL()
-////            }
-//        }
+//    GlobalScope.launch {
+//        println("协程他妈的跑起来了！")
+//        /**
+//         * 这个方法和sleep的区别就是
+//         * 这个方法是一个非阻塞式的挂起函数 只会挂起当前协程
+//         * 并不会影响其他协程的运行
+//         * 而Thread.sleep()方法会阻塞当前的线程，这样运行在该线程下的所有协程都会被阻塞。
+//         * 注意，delay()函数只能在协程的作用域或其他挂起函数中调用
+//         */
+//        delay(1500)//如果这个时间大于下面的  还是看不到结束的打印 因为这个协程还在挂起的时候  下面的sleep已经跑完了  直接结束了
+//        println("协程他妈的跑完了！")
 //    }
-//    val end = System.currentTimeMillis()
-//    println(end - start)
-    /**
-     * coroutineScope函数和runBlocking函数还有点类似，
-     * 它可以保证其作用域内的所有代码和子协程在全部执行完之前，
-     * 外部的协程会一直被挂起。
-     */
-    /**
-     * coroutineScope函数只会阻塞当前协程，
-     * 既不影响其他协程，也不影响任何线程，
-     * 因此是不会造成任何性能上的问题的。
-     * 而runBlocking函数由于会挂起外部线程，
-     * 如果你恰好又在主线程中当中调用它的话，
-     * 那么就有可能会导致界面卡死的情况，
-     * 所以不太推荐在实际项目中使用。
-     */
-    runBlocking {
-        coroutineScope {
-            launch {
-                for (i in 1..10){
-                    println(i)
-                    delay(1000)
-                }
-            }
-        }
-        println("coroutineScope他妈的跑完了！")
-    }
-    println("协程跑完了！")
+//    //不加这个看不到信息 因为程序跑太快
+//    Thread.sleep(1000)
+
+
+
+
+
 
 }
 /**
