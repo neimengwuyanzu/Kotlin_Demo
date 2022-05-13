@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_fruit.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class FruitActivity : AppCompatActivity() {
 

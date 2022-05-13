@@ -48,10 +48,12 @@ class MainActivity : AppCompatActivity() {
         }
         fab.setOnClickListener { view ->
 //            Toast.makeText(this, "一个悬浮按钮", Toast.LENGTH_SHORT).show()
+            //提示中加入一个可交互按钮 添加的view就是基于传递的控件进行响应
             Snackbar.make(view, "数据删除", Snackbar.LENGTH_SHORT)
                 .setAction("撤回") {
                     Toast.makeText(this, "操作未执行", Toast.LENGTH_SHORT).show()
                 }.show()
+
         }
 
         initFruits()

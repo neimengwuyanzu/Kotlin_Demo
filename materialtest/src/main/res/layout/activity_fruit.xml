@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,7 +11,15 @@
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
         android:layout_height="250dp">
-
+        <!--
+        CollapsingToolbarLayout可以让Toolbar的效果变得更加丰富，
+        不仅仅是展示一个标题栏，
+        而且能够实现非常华丽的效果-->
+        <!--android:theme 指定一个主题-->
+        <!--app:contentScrim属性用于指定CollapsingToolbarLayout在趋于折叠状态以及折叠之后的背景色-->
+        <!--app:layout_scrollFlags 之前用的折叠效果
+                scroll表示CollapsingToolbarLayout会随着水果内容详情的滚动一起滚动
+                exitUntilCollapsed表示当CollapsingToolbarLayout随着滚动完成折叠之后就保留在界面上，不再移出屏幕-->
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbar"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -20,7 +28,9 @@
             android:layout_width="match_parent"
             android:fitsSystemWindows="true"
             android:layout_height="match_parent">
-
+            <!--app:layout_collapseMode：用于指定当前控件在CollapsingToolbarLayout折叠过程中的折叠模式
+                    pin，表示在折叠的过程中位置始终保持不变
+                    parallax，表示会在折叠的过程中产生一定的错位偏移-->
             <ImageView
                 android:id="@+id/fruitImageView"
                 android:scaleType="centerCrop"
@@ -29,6 +39,7 @@
                 android:fitsSystemWindows="true"
                 android:layout_height="match_parent"/>
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"/>
@@ -60,7 +71,11 @@
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
+    <!--使用app:layout_anchor属性指定了一个锚点，
+            我们将锚点设置为AppBarLayout，
+            这样悬浮按钮就会出现在水果标题栏的区域内
+        app:layout_anchorGravity属性将悬浮按钮定位在标题栏区域的右下角
+        -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_margin="16dp"
@@ -68,4 +83,4 @@
         app:layout_anchor="@id/appBar"
         app:layout_anchorGravity="bottom|end"
         android:layout_height="wrap_content"/>
-</com.google.android.material.circularreveal.coordinatorlayout.CircularRevealCoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
